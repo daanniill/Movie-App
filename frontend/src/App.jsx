@@ -1,35 +1,24 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import MovieCard from "./components/MovieCard"
 
-function App() {
-  const [count, setCount] = useState(0)
+function App() { // An example of a component, any function in JS that returns some kind of JSX code
+  // Can only return one parent element
+  const movieNumber = 2;
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <> {/* A fragment, kind of an empty html tag, basically makes it so u can return multiple root elements */}
+      
+      {/* Conditional statement, if movieNumber == 1, then display first movie, else display the second one */}
+      {movieNumber === 1 ? (
+        <MovieCard movie={{title: "My Film", release_date: "2025"}}/>
+      ) : (
+        <MovieCard movie={{title: "New Film", release_date: "2026"}}/>
+      )}  
+
+      {/* Could also use shortcircuiting from js to do the following */}
+      {movieNumber === 1 && <MovieCard movie={{title: "My Film", release_date: "2025"}}/>}
     </>
-  )
+  );
 }
 
 export default App
