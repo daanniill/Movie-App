@@ -1,23 +1,25 @@
-import './App.css'
+import './css/App.css'
 import MovieCard from "./components/MovieCard"
+import Favorites from './pages/Favorites'
+import Home from "./pages/Home"
+import { Routes, Route } from 'react-router-dom'
+import { MovieProvider } from './contexts/MovieContext'
+import NavBar from './components/NavBar'
+
 
 function App() { // An example of a component, any function in JS that returns some kind of JSX code
   // Can only return one parent element
-  const movieNumber = 2;
 
   return (
-    <> {/* A fragment, kind of an empty html tag, basically makes it so u can return multiple root elements */}
-      
-      {/* Conditional statement, if movieNumber == 1, then display first movie, else display the second one */}
-      {movieNumber === 1 ? (
-        <MovieCard movie={{title: "My Film", release_date: "2025"}}/>
-      ) : (
-        <MovieCard movie={{title: "New Film", release_date: "2026"}}/>
-      )}  
-
-      {/* Could also use shortcircuiting from js to do the following */}
-      {movieNumber === 1 && <MovieCard movie={{title: "My Film", release_date: "2025"}}/>}
-    </>
+    <MovieProvider>
+      <NavBar/>
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/favorites" element={<Favorites/>}/>
+        </Routes>
+      </main>
+    </MovieProvider>
   );
 }
 
